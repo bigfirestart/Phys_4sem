@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-from brown_movement import BrownMovement
+from src.brown_movement import BrownMovement
 
 
 def lam2():

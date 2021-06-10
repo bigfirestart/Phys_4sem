@@ -2,8 +2,6 @@ from enum import Enum
 
 import matplotlib.pyplot as plt
 
-plt.style.use(['dark_background'])
-
 
 class Plot:
     def __init__(self):

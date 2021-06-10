@@ -17,8 +17,6 @@ def lab2():
     plot = Plot()
     x, y = BrownMovement(t=10, p=1e4, r=1e-6, N=250).act()
     plot.draw(x, y)
-    x, y = BrownMovement(t=293.15, p=1e4, r=1e-8, N=1000).act()
-    plot.draw(x, y)
     x, y = BrownMovement(t=293.15, p=1e4, r=1e-8, N=250).act()
     plot.draw(x, y)
     x, y = BrownMovement(t=220.5, p=1e4, r=1e-6, N=250).act()
@@ -28,4 +26,4 @@ def lab2():
 
 
 if __name__ == "__main__":
-    lab1()
+    lab2()

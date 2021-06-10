@@ -13,17 +13,7 @@ class BrownMovement:
         self.tmp, self.p, self.r, self.N, self.sum_l = [t, p, r, N, 0]
         self.x, self.y = [0], [0]
         center = (Constants.k.value * self.tmp) / (math.sqrt(2) * math.pi * ((self.r * 2) ** 2) * self.p)
-        self.lmd_array = np.random.normal(center, center/100, N+1)
-        print(f"Center: {center}")
-        print(f"res: {self.lmd_array}")
-
-
-    @property
-    def lmd_rand(self):
-        return 0 if self.tmp == 0 else (Constants.k.value * self.tmp) / (
-                    math.sqrt(2) * math.pi * ((self.r * 2) ** 2) * self.p) + (
-                                                   random.random() * 0.4e-16 - random.random() * 0.45e-16)
-
+        self.lmd_array = np.random.normal(center, 0.01e-16, N + 1)
 
     def __calculate_next_step(self, iter: int):
         change = 1
@@ -40,7 +30,6 @@ class BrownMovement:
         while iter <= self.N:
             self.__calculate_next_step(iter=iter)
             self.sum_l += self.lmd_array[iter]
-            # print(self.x[len(self.x) - 1], self.y[len(self.y) - 1], "Длина = ", self.sum_l)
             iter += 1
 
         print("Средняя длина =", self.sum_l / self.N)

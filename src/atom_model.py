@@ -22,7 +22,8 @@ class AtomModel:
         R = np.sqrt(self.X ** 2 + self.Y ** 2 + self.Z ** 2)
         Theta = np.arccos(self.Z / R)
         Phi = np.arctan2(self.Y, self.X)
-        a = 0.5291 * 10e-10
+        # Bors radius
+        a = 0.5291e-10
         rho = 2. * R / self.n
         s_harm = sph_harm(self.m, self.l, Phi, Theta)
         l_poly = scipy.special.genlaguerre(self.n - self.l - 1, 2 * self.l + 1)(rho)
@@ -30,7 +31,9 @@ class AtomModel:
         prefactor = np.sqrt((2. / self.n / a) ** 3 * math.factorial(self.n - self.l - 1) / (2. * self.n * math.factorial(self.n + self.l)))
         wf = prefactor * np.exp(-rho / 2.) * rho ** self.l * s_harm * l_poly
         self.wf = np.nan_to_num(wf)
-
+        if np.trapz(wf*wf) != 1:
+            assert "Функция не удовлетворяет условию нормировки"
+            
     def plot_slice(self):
         data = abs(self.wf) ** 2
         fig, ax = plt.subplots()

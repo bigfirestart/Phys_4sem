@@ -5,6 +5,7 @@ from enum import Enum
 
 
 class Constants(Enum):
+    # Больчман
     k = 1.38e-23
 
 
@@ -13,7 +14,8 @@ class BrownMovement:
         self.tmp, self.p, self.r, self.N, self.sum_l = [t, p, r, N, 0]
         self.x, self.y = [0], [0]
         center = (Constants.k.value * self.tmp) / (math.sqrt(2) * math.pi * ((self.r * 2) ** 2) * self.p)
-        self.lmd_array = np.random.normal(center, 0.01e-16, N + 1)
+        print(center)
+        self.lmd_array = np.random.normal(center, r/10, N + 1)
 
     def __calculate_next_step(self, iter: int):
         change = 1
